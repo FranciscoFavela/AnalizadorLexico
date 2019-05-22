@@ -52,42 +52,42 @@ public class AnalizadorLexico {
     }
     public void Estados()
     {
-	    System.out.prinln("Numeros Reales")//102
+	System.out.println("Numeros Reales")//102
 
-	System.out.prinln("Letrero")//103
+	System.out.println("Letrero")//103
 
-	System.out.prinln("Comentario")//502
-	System.out.prinln("Formato")//104
-	System.out.prinln("Division")//116
-	System.out.prinln("Comentarios")//105
+	System.out.println("Comentario")//502
+	System.out.println("Formato")//104
+	System.out.println("Division")//116
+	System.out.println("Comentarios")//105
 
-	System.out.prinln("Operador Tomado")//508
-	System.out.prinln("Igualda")//106
-	System.out.prinln("Menor")//107
-	System.out.prinln("Diferente")//108
-	System.out.prinln("Menor igual")//109
-	System.out.prinln("Mayor")//110
-	System.out.prinln("Mayor Igual")//111
-	System.out.prinln("Suma")//112
-	System.out.prinln("Resta")//113
-	System.out.prinln("Multiplicacion")//114
-	System.out.prinln("Por Por")//115
+	System.out.println("Operador Tomado")//508
+	System.out.println("Igualda")//106
+	System.out.println("Menor")//107
+	System.out.println("Diferente")//108
+	System.out.println("Menor igual")//109
+	System.out.println("Mayor")//110
+	System.out.println("Mayor Igual")//111
+	System.out.println("Suma")//112
+	System.out.println("Resta")//113
+	System.out.println("Multiplicacion")//114
+	System.out.println("Por Por")//115
 
-	System.out.prinln("Parentesis que abre")//117
-	System.out.prinln("Parentesis que cierra")//118
-	System.out.prinln("Corchete que abre")//119
-	System.out.prinln("Corchete que cierra")//120
-	System.out.prinln("Coma")//121
-	System.out.prinln("Punto")//122
-	System.out.prinln("Punto y punto")//123
-	System.out.prinln("Punto y coma")//124
-	System.out.prinln("Dos puntos")//125
-	System.out.prinln("Asignacion")//126
+	System.out.println("Parentesis que abre")//117
+	System.out.println("Parentesis que cierra")//118
+	System.out.println("Corchete que abre")//119
+	System.out.println("Corchete que cierra")//120
+	System.out.println("Coma")//121
+	System.out.println("Punto")//122
+	System.out.println("Punto y punto")//123
+	System.out.println("Punto y coma")//124
+	System.out.println("Dos puntos")//125
+	System.out.println("Asignacion")//126
 	
-	System.out.prinln("Or")//503
-	System.out.prinln("And")//504
-	System.out.prinln("Not")//505
-	System.out.prinln("Error Logico")//506
+	System.out.println("Or")//503
+	System.out.println("And")//504
+	System.out.println("Not")//505
+	System.out.println("Error Logico")//506
     }
     
     public void LlenarPilla(){
