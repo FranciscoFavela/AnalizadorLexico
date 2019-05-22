@@ -83,6 +83,11 @@ public class AnalizadorLexico {
 	System.out.prinln("Punto y coma")//124
 	System.out.prinln("Dos puntos")//125
 	System.out.prinln("Asignacion")//126
+	
+	System.out.prinln("Or")//503
+	System.out.prinln("And")//504
+	System.out.prinln("Not")//505
+	System.out.prinln("Error Logico")//506
     }
     
     public void LlenarPilla(){
