@@ -5,6 +5,9 @@
  */
 package analizadorlexicosintactico;
 
+import java.util.Scanner;
+import java.util.Stack;
+
 /**
  *
  * @author Francisco Favela
@@ -36,13 +39,40 @@ public class AnalizadorLexico {
                 {125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125}
 
         };//
+    Scanner parametro= new Scanner(System.in);
+    public static String Enunciado="";
     public static int apuntador = 0;
     public static int ELERROR = 1;
+    
+    public void RecibeCadena() {
+        apuntador = 0;
+        System.out.println("escribe una palabra");
+        Enunciado = parametro.nextLine();
+
+        System.out.println("se recibio el parametro: " + Enunciado);
+    }
+
     public static void main(String[] args) {
-        // TODO code application logic here
+        Stack<Character> palabra = new Stack<>();
+       AnalizadorLexico OBJ = new AnalizadorLexico();
+         OBJ.RecibeCadena();
+       
 	// Ambos char deben ser pilas de caracteres
-        char palabra='a';
-        char palabra2='a';
+        Stack<Character> palabra2 = new Stack<>();
+        
+        for(int DD=0; DD<=Enunciado.length();DD++){
+            palabra.push(Enunciado.charAt(DD));
+        }
+        // assci de las letras, simbolos incuyendo numeros, y espacios
+        if((palabra.peek()>=65 || palabra.peek()<=90)||(palabra.peek()>=97 || palabra.peek() <=122  )){
+            
+        }
+        else if(palabra.peek()>=33 || palabra.peek()<=62 ){
+        }
+        else if(palabra.peek()==32){
+            
+        }
+        
         String Leida="";
         boolean letra= true;
         boolean simbolo= true;
@@ -51,13 +81,14 @@ public class AnalizadorLexico {
         
         
         while (letra=true){
+            palabra2.push(palabra.pop());
             apuntador++;            
             AnchoPalabra++;        
         }
         
         for (int i=0; i<AnchoPalabra;i++){
             //Se combierten las letras en una palabra con el pop de la pila
-            Leida+=palabra2;
+            Leida+=palabra2.pop();
         }
         if(AnchoPalabra==2){
                 //Do        Of      By      To
@@ -129,38 +160,50 @@ public class AnalizadorLexico {
              
         }
         while(simbolo=true){
+            char Simbolo1=palabra.pop();
             apuntador++; 
-            char PilaSimbolos='(';
+            Stack<Character> PilaSimbolos = new Stack<>();
+            
             //verificar el guion bajo
-            if(palabra=='_'){
+            if(Simbolo1=='_'){
                 //Pasa a estado de error
-                if(palabra=='_'){
+                if(Simbolo1=='_'){
                     //Pasa a estado de error
                 }
             }            
             //Codigo de pila de simbolos de Estructura de Datos
-            /*
-            else if(palabra=='('){
-                PilaSimbolos.push(')')
+            
+            else if(Simbolo1=='('){
+                PilaSimbolos.push(')');
             }
-            else if(palabra=='['){
-                PilaSimbolos.push(']')
+            else if(Simbolo1=='['){
+                PilaSimbolos.push(']');
             }
-            else if(palabra=='{'){
-                PilaSimbolos.push('}')
+            else if(Simbolo1=='{'){
+                PilaSimbolos.push('}');
             }
-            else if(palabra==')'||palabra==']'||palabra=='}'){
-                if(PilaSimbolos.vacia()){
+            else if(Simbolo1=='"'){
+                PilaSimbolos.push('"');
+            }
+//si llega un punto solo esta mal
+            else if(Simbolo1=='.'){
+                PilaSimbolos.push('.');
+            }
+//agregar ascci de los numeros en N
+            else if(Simbolo1==')'||Simbolo1==']'||Simbolo1=='}'||Simbolo1=='"'||(Simbolo1>=48||Simbolo1<=57)){
+                if(PilaSimbolos.empty()){
                     ELERROR=-1;
                 }
-                else if(palabra!=PilaSimbolos.pop()){
+                else if(PilaSimbolos.pop()=='.'&&(Simbolo1<48||Simbolo1>57)){
+                    ELERROR=-1;
+                }
+                else if(Simbolo1!=PilaSimbolos.pop()){
                     ELERROR=-1;
                 }
             }
-            */
+            
             
         }
     }
     
 }
-
