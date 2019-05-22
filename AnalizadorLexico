@@ -50,6 +50,40 @@ public class AnalizadorLexico {
         Enunciado = parametro.nextLine();
         System.out.println("se recibio la orden: " + Enunciado);
     }
+    public void Estados()
+    {
+	    System.out.prinln("Numeros Reales")//102
+
+	System.out.prinln("Letrero")//103
+
+	System.out.prinln("Comentario")//502
+	System.out.prinln("Formato")//104
+	System.out.prinln("Division")//116
+	System.out.prinln("Comentarios")//105
+
+	System.out.prinln("Operador Tomado")//508
+	System.out.prinln("Igualda")//106
+	System.out.prinln("Menor")//107
+	System.out.prinln("Diferente")//108
+	System.out.prinln("Menor igual")//109
+	System.out.prinln("Mayor")//110
+	System.out.prinln("Mayor Igual")//111
+	System.out.prinln("Suma")//112
+	System.out.prinln("Resta")//113
+	System.out.prinln("Multiplicacion")//114
+	System.out.prinln("Por Por")//115
+
+	System.out.prinln("Parentesis que abre")//117
+	System.out.prinln("Parentesis que cierra")//118
+	System.out.prinln("Corchete que abre")//119
+	System.out.prinln("Corchete que cierra")//120
+	System.out.prinln("Coma")//121
+	System.out.prinln("Punto")//122
+	System.out.prinln("Punto y punto")//123
+	System.out.prinln("Punto y coma")//124
+	System.out.prinln("Dos puntos")//125
+	System.out.prinln("Asignacion")//126
+    }
     
     public void LlenarPilla(){
         
