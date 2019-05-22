@@ -13,10 +13,11 @@ import java.util.Stack;
  * @author Francisco Favela
  */
 public class AnalizadorLexico {
-     String reservada[] = {"array", "begin", "case", "const", "do", "else", "writeln","readln", "elseif", "end",
-                          "for", "if", "loop", "module","function", "exit", "not", "of","mod","record","repeat","return",
-                          "pocedure","by","then","to","until","var","while","with","true","false","div","integer","real",
-                          "char","string","byte","boolean","string"};
+
+    String reservada[] = {"array", "begin", "case", "const", "do", "else", "writeln", "readln", "elseif", "end",
+        "for", "if", "loop", "module", "function", "exit", "not", "of", "mod", "record", "repeat", "return",
+        "pocedure", "by", "then", "to", "until", "var", "while", "with", "true", "false", "div", "integer", "real",
+        "char", "string", "byte", "boolean", "string"};
     public int [][] matrizL={
             //	l	L	d	_	.	'	/	"	{	}	=	<	>	+	-	(	)	[	]	,	;	:	/t	/n	/b      !=
 		{1	,1	,3	,506	,16	,6	,8	,15	,11	,506	,12	,11	,12	,113	,114	,118	,119	,120	,121	,122	,124	,125	,0	,0	,0	,505}	,
@@ -39,85 +40,143 @@ public class AnalizadorLexico {
                 {125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125}
 
         };//
-    Scanner parametro= new Scanner(System.in);
-    public static String Enunciado="";
-    Stack<Character> palabra = new Stack<>();    
+    Scanner parametro = new Scanner(System.in);
+    public static String Enunciado = "";
+    Stack<Character> palabra = new Stack<>();
     Stack<Character> palabra2 = new Stack<>();
     public static int ELERROR = 1;
-    
+
     public void RecibeCadena() {
         System.out.println("escribe una palabra");
         Enunciado = parametro.nextLine();
         System.out.println("se recibio la orden: " + Enunciado);
     }
-    public void Estados()
-    {
-	System.out.println("Numeros Reales")//102
 
-	System.out.println("Letrero")//103
-
-	System.out.println("Comentario")//502
-	System.out.println("Formato")//104
-	System.out.println("Division")//116
-	System.out.println("Comentarios")//105
-
-	System.out.println("Operador Tomado")//508
-	System.out.println("Igualda")//106
-	System.out.println("Menor")//107
-	System.out.println("Diferente")//108
-	System.out.println("Menor igual")//109
-	System.out.println("Mayor")//110
-	System.out.println("Mayor Igual")//111
-	System.out.println("Suma")//112
-	System.out.println("Resta")//113
-	System.out.println("Multiplicacion")//114
-	System.out.println("Por Por")//115
-
-	System.out.println("Parentesis que abre")//117
-	System.out.println("Parentesis que cierra")//118
-	System.out.println("Corchete que abre")//119
-	System.out.println("Corchete que cierra")//120
-	System.out.println("Coma")//121
-	System.out.println("Punto")//122
-	System.out.println("Punto y punto")//123
-	System.out.println("Punto y coma")//124
-	System.out.println("Dos puntos")//125
-	System.out.println("Asignacion")//126
-	
-	System.out.println("Or")//503
-	System.out.println("And")//504
-	System.out.println("Not")//505
-	System.out.println("Error Logico")//506
+    public void Estados(int a) {
+        switch (a) {
+            case 103:
+                System.out.println("Letrero");//103
+                break;
+            case 502:
+                System.out.println("Comentario");//502
+                break;
+            case 104:
+                System.out.println("Formato");//104
+                break;
+            case 116:
+                System.out.println("Division");//116
+                break;
+            case 105:
+                System.out.println("Comentarios");//105
+                break;
+            case 508:
+                System.out.println("Operador formado");//508
+                break;
+            case 106:
+                System.out.println("Igualda");//106
+                break;
+            case 107:
+                System.out.println("Menor");//107
+                break;
+            case 108:
+                System.out.println("Diferente");//108
+                break;
+            case 109:
+                System.out.println("Menor igual");//109
+                break;
+            case 110:
+                System.out.println("Mayor");//110
+                break;
+            case 111:
+                System.out.println("Mayor Igual");//111
+                break;
+            case 112:
+                System.out.println("Suma");//112
+                break;
+            case 113:
+                System.out.println("Resta");//113
+                break;
+            case 114:
+                System.out.println("Multiplicacion");//114
+                break;
+            case 115:
+                System.out.println("Por Por");//115
+                break;
+            case 117:
+                System.out.println("Parentesis que abre");//117
+                break;
+            case 118:
+                System.out.println("Parentesis que cierra");//118
+                break;
+            case 119:
+                System.out.println("Corchete que abre");//119
+                break;
+            case 120:
+                System.out.println("Corchete que cierra");//120
+                break;
+            case 121:
+                System.out.println("Coma");//121
+                break;
+            case 122:
+                System.out.println("Punto");//122
+                break;
+            case 123:
+                System.out.println("Punto y punto");//123
+                break;
+            case 124:
+                System.out.println("Punto y coma");//124
+                break;
+            case 125:
+                System.out.println("Dos puntos");//125
+                break;
+            case 126:
+                System.out.println("Asignacion");//126
+                break;
+            case 503:
+                System.out.println("Or");//503
+                break;
+            case 504:
+                System.out.println("And");//504
+                break;
+            case 505:
+                System.out.println("Not");//505
+                break;
+            case 506:
+                System.out.println("Error Logico");//506
+                break;
+            case 507:
+                System.out.println("Error Doble guion");//507
+                break;
+            default:
+                System.out.println("Caso Desconocido");
+                break;
+        }
     }
-    
-    public void LlenarPilla(){
-        
-        for(int DD=0; DD<=Enunciado.length();DD++){
+
+    public void LlenarPilla() {
+
+        for (int DD = 0; DD <= Enunciado.length(); DD++) {
             palabra.push(Enunciado.charAt(DD));
         }
     }
-public void UltimoCaracter(){
-        System.out.println(palabra.peek());
-        int lim = Enunciado.length();
-        String Leida="";
-        int AnchoPalabra=0;
-        int SimboloEsctrito=0;
-        int apuntador=0;
-        while(apuntador<lim){
-        
-            if((palabra.peek()>=65 && palabra.peek()<=90)||(palabra.peek()>=97 && palabra.peek() <=122  )){
 
-                
-                System.out.println("Es una letra");
+    public void UltimoCaracter() {
+        int lim = Enunciado.length();
+        String Leida = "";
+        int AnchoPalabra = 0;
+        int SimboloDoble = 0;
+        int SimboloEsctrito = 0;
+        int apuntador = 0;
+        while (apuntador > lim) {
+
+            if ((palabra.peek() >= 65 || palabra.peek() <= 90) || (palabra.peek() >= 97 || palabra.peek() <= 122)) {
+
                 palabra2.push(palabra.pop());
-                
-                
-                
-                apuntador++;            
+                apuntador++;
                 AnchoPalabra++;
-                Leida+=palabra2.pop();
-                Leida=Leida.toLowerCase();
-                
+                Leida += palabra2.pop();
+                Leida = Leida.toLowerCase();
+
                 switch (AnchoPalabra) {
                     case 2:
                         //Do        Of      By      To      If or
@@ -126,8 +185,7 @@ public void UltimoCaracter(){
                         //Si el error se cumple pasa a error
 
                         //Vaciar la palabra leida despues de usarla
-                        Leida="";
-                        System.out.println("Es una palabra de "+AnchoPalabra+" letras");
+                        Leida = "";
                         break;
                     case 3:
                         //End       For      Not     Mod     Var     Div    and not             
@@ -135,8 +193,7 @@ public void UltimoCaracter(){
                         //if
 
                         //Vaciar la palabra leida despues de usarla
-                        Leida="";
-                        System.out.println("Es una palabra de "+AnchoPalabra+" letras");
+                        Leida = "";
                         break;
                     case 4:
                         //Case      Else    Loop    Exit    Then    With    True    Real    Char    Byte
@@ -144,8 +201,7 @@ public void UltimoCaracter(){
                         //if
 
                         //Vaciar la palabra leida despues de usarla
-                        Leida="";
-                        System.out.println("Es una palabra de "+AnchoPalabra+" letras");
+                        Leida = "";
                         break;
                     case 5:
                         //Array     Begin   Const   Until   While   False
@@ -153,8 +209,7 @@ public void UltimoCaracter(){
                         //if
 
                         //Vaciar la palabra leida despues de usarla
-                        Leida="";
-                        System.out.println("Es una palabra de "+AnchoPalabra+" letras");
+                        Leida = "";
                         break;
                     case 6:
                         //Readln    ElseIf  Module  Record  Repeat  Return  String
@@ -162,8 +217,7 @@ public void UltimoCaracter(){
                         //if
 
                         //Vaciar la palabra leida despues de usarla
-                        Leida="";
-                        System.out.println("Es una palabra de "+AnchoPalabra+" letras");
+                        Leida = "";
                         break;
                     case 7:
                         //Writeln   Integer	Boolean
@@ -171,8 +225,7 @@ public void UltimoCaracter(){
                         //if
 
                         //Vaciar la palabra leida despues de usarla
-                        Leida="";
-                        System.out.println("Es una palabra de "+AnchoPalabra+" letras");
+                        Leida = "";
                         break;
                     case 8:
                         //Function	Procedure
@@ -180,176 +233,151 @@ public void UltimoCaracter(){
                         //if
 
                         //Vaciar la palabra leida despues de usarla
-                        Leida="";
-                        System.out.println("Es una palabra de "+AnchoPalabra+" letras");
+                        Leida = "";
                         break;
-                    default: 
+                    default:
                         break;
-                }                
-            }
+                }
+            } else if (palabra.peek() >= 33 || palabra.peek() <= 62) {
+                AnchoPalabra = 0;
 
-            //delimitadores 
-            else if(palabra.peek()==40 || palabra.peek()==41 || palabra.peek()==44
-                    || palabra.peek()==46 || palabra.peek()>=91 && palabra.peek()<=96
-                    ||palabra.peek()>=123 && palabra.peek()<=126){
-                
-                AnchoPalabra=0;
-                Stack<Character> PilaDelimitadores = new Stack<>();
-                 char Delimitador=palabra.pop();
-                System.out.println("Es un delimitador");
-                
-                if(apuntador==lim-1){
-                    ELERROR=-1;
+                char Simbolo1 = palabra.pop();
+                if (apuntador == 0) {
+                    ELERROR = -1;
                     System.out.println("Error no empieza con letra");
-                }else if(apuntador==0 && Delimitador=='_'){
-                    System.out.println("Error termina con guion bajo");
                 }
-                if(PilaDelimitadores.peek()=='.'){
-                    if(Delimitador=='.'){
-                        //Doble punto
-                    }
-                }
-                else if(Delimitador==')'){
-                    PilaDelimitadores.push('(');
-                    //Parentesis derecho
-                }
-                else if(Delimitador==']'){
-                    PilaDelimitadores.push('[');
-                    //Corchete derecho
-                }
-                else if(Delimitador=='}'){
-                    PilaDelimitadores.push('{');
-                    //Llave derecha
-                }
-                else if(Delimitador=='"'){
-                    PilaDelimitadores.push('"');
-                    //Letrero
-                }
-                else if(Delimitador=='.'){
-                    PilaDelimitadores.push('.');
-                    //punto
-                }
-                
-            }
-            
-            //operadores          
-            else if(palabra.peek()>=60 && palabra.peek()<=62
-                    ||palabra.peek()==42||palabra.peek()==43||palabra.peek()==45
-                    ||palabra.peek()==47){
-                AnchoPalabra=0;
-                System.out.println("Es un operador");
-                 Stack<Character> PilaOperadores = new Stack<>();
-                 char operador=palabra.pop();
-                
-                if(apuntador==lim-1){
-                    ELERROR=-1;
-                    System.out.println("Error no empieza con letra");
-                }               
-                apuntador++;               
-                if(PilaOperadores.peek()==':'){
-                    if(operador=='='){
-                        //asignacion
-                    }
-                }
-                else if(PilaOperadores.peek()=='*'){
-                    if(operador=='*'){
-                        //por por
-                    }
-                    else if(operador=='/'){
-                        //comentario abierto
-                    }
-                    
-                }
-                else if(PilaOperadores.peek()=='/'){
-                    if(operador=='*'){
-                        //comentario cerrado
-                    }
-                    
-                }
-                else if(PilaOperadores.peek()=='<'){
-                    if(operador=='>'){
-                        //diferente
-                    }
-                    else if(operador=='='){
-                        //menor igual
-                    }
-                    
-                }
-                else if(PilaOperadores.peek()=='>'){
-                    if(operador=='='){
-                        //mayor igual
-                    }
-                    
-                }
-                else if(PilaOperadores.peek()=='='){
-                    if(operador=='='){
-                        //igual igual
-                    }
-                    
-                }
-                if(operador==':'){
-                    PilaOperadores.push(operador);
-                    //dos puntos
-                }
-                else if(operador=='='){
-                    PilaOperadores.push(operador);
-                    //508
-                }
-                else if(operador=='<'){
-                    PilaOperadores.push(operador);
-                    //menor
-                }
-                else if(operador=='>'){
-                    PilaOperadores.push(operador);
-                    //mayor
-                }
-                else if(operador=='+'){
-                    PilaOperadores.push(operador);
-                    //mas
-                }
-                else if(operador=='-'){
-                    PilaOperadores.push(operador);
-                    //menos
-                }
-                else if(operador=='*'){
-                    PilaOperadores.push(operador);
-                    //multiplicacion
-                }
-                else if(operador=='/'){
-                    PilaOperadores.push(operador);
-                    //divicion
-                }
-            }
-            
-            //numeros 
-            else if(palabra.peek()>=48 && palabra.peek()<=57){
-                AnchoPalabra=0;
-                System.out.println("Es un numero");
-                palabra.pop();
-                // numeros cortan operadores
+
                 apuntador++;
-                
-            }
-            
-            else if(palabra.peek()==32 || palabra.peek()=='\n'|| palabra.peek()=='\t'){
-                AnchoPalabra=0;
+                Stack<Character> PilaSimbolos = new Stack<>();
+                if (SimboloEsctrito == 1) {
+                    PilaSimbolos.push('|');
+                } else if (SimboloEsctrito == 2) {
+                    PilaSimbolos.push('&');
+                } else if (SimboloEsctrito == 3) {
+                    PilaSimbolos.push('!');
+                } //verificar el guion bajo
+                else if (Simbolo1 == '_') {
+                    PilaSimbolos.push('_');
+                } else if (Simbolo1 == '(') {
+                    PilaSimbolos.push(')');
+                } else if (Simbolo1 == '[') {
+                    PilaSimbolos.push(']');
+                } else if (Simbolo1 == '{') {
+                    PilaSimbolos.push('}');
+                } else if (Simbolo1 == '"') {
+                    PilaSimbolos.push('"');
+                } //si llega un punto solo esta mal
+                else if (Simbolo1 == '.') {
+                    PilaSimbolos.push('.');
+                } else if (Simbolo1 == '=') {
+                    PilaSimbolos.push('=');
+                } else if (Simbolo1 == '*') {
+                    if (PilaSimbolos.peek() == '/') {
+                        //comentarios activos
+                    } else if (PilaSimbolos.peek() == '*') {
+                        //Segunda y ultima a espera de un numero
+                        SimboloDoble = 2;
+                    }
+                    PilaSimbolos.push('*');
+                } else if (Simbolo1 == '>') {
+                    if (PilaSimbolos.peek() == '<') {
+                        //comentarios activos
+                        SimboloDoble = 2;
+                    }
+                    PilaSimbolos.push('*');
+                } else if (Simbolo1 == '=') {
+                    if (PilaSimbolos.peek() == '=' || PilaSimbolos.peek() == '>' || PilaSimbolos.peek() == '<' || PilaSimbolos.peek() == ':') {
+                        //comentarios activos
+                        SimboloDoble = 2;
+                    }
+                    PilaSimbolos.push('=');
+                } else if (Simbolo1 == '+') {
+                    PilaSimbolos.push('+');
+                } else if (Simbolo1 == '-') {
+                    PilaSimbolos.push('-');
+                } else if (Simbolo1 == '/') {
+                    if (PilaSimbolos.peek() == '*') {
+                        System.out.println("Error no cerro comentarios");
+                    }
+                    PilaSimbolos.push('/');
+                } else if (SimboloDoble == 2 && (Simbolo1 == '*' || Simbolo1 == '>' || Simbolo1 == '=')) {
+                    //Error de sintaxis
+                } //Simbolos que se cierran con un su pareja
+                else if (Simbolo1 == ')' || Simbolo1 == ']' || Simbolo1 == '}' || Simbolo1 == '"') {
+                    if (PilaSimbolos.empty()) {
+                        ELERROR = -1;
+                    } else if (Simbolo1 != PilaSimbolos.pop()) {
+                        ELERROR = -1;
+                    }
+                } //Simbolos que se cierran con numeros            
+                else if (Simbolo1 >= 48 || Simbolo1 <= 57) {
+                    if (null != PilaSimbolos.peek()) {
+                        switch (PilaSimbolos.peek()) {
+                            case '.':
+                                PilaSimbolos.pop();
+                                break;
+                            case ',':
+                                PilaSimbolos.pop();
+                                break;
+                            case '<':
+                                PilaSimbolos.pop();
+                                break;
+                            case '>':
+                                PilaSimbolos.pop();
+                                break;
+                            case '+':
+                                PilaSimbolos.pop();
+                                break;
+                            case '-':
+                                PilaSimbolos.pop();
+                                break;
+                            case '*':
+                                PilaSimbolos.pop();
+                                break;
+                            case '/':
+                                PilaSimbolos.pop();
+                                break;
+                            case '=':
+                                PilaSimbolos.pop();
+                                break;
+                            case '|':
+                                PilaSimbolos.pop();
+                                break;
+                            case '&':
+                                PilaSimbolos.pop();
+                                break;
+                            case '!':
+                                PilaSimbolos.pop();
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                } //Simbolos Swingers    
+                else if (Simbolo1 == ')' || Simbolo1 == ']' || Simbolo1 == '}' || Simbolo1 == '"' || (Simbolo1 >= 48 || Simbolo1 <= 57)) {
+                    if (PilaSimbolos.empty()) {
+                        ELERROR = -1;
+                    } else if (PilaSimbolos.pop() == '.' && (Simbolo1 < 48 || Simbolo1 > 57)) {
+                        ELERROR = -1;
+                    } else if (Simbolo1 != PilaSimbolos.pop()) {
+                        ELERROR = -1;
+                    }
+                }
+            } else if (palabra.peek() == 32) {
+                AnchoPalabra = 0;
 
-                System.out.println("Es un espacio");
                 palabra.pop();
-                 if(apuntador==lim-1){
+                if (apuntador == 0) {
                     //Pasa a error
-                    ELERROR=-1;
+                    ELERROR = -1;
                 }
                 //avanzar en la pila
-                   apuntador++;                           
-            }
-            else{
-                ELERROR=-1;
                 apuntador++;
-                palabra.pop();
+            } else {
+                ELERROR = -1;
                 System.out.println("Error caracter no valido");
-            }            
+            }
         }
     }
-    
+
 }
