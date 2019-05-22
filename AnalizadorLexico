@@ -36,6 +36,8 @@ public class AnalizadorLexico {
                 {125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125}
 
         };//
+    public static int apuntador = 0;
+    public static int ELERROR = 1;
     public static void main(String[] args) {
         // TODO code application logic here
 	// Ambos char deben ser pilas de caracteres
