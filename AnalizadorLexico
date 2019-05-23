@@ -85,7 +85,7 @@ public class AnalizadorLexico {
                 System.out.println("Comentarios");//105
                 break;
             case 508:
-                System.out.println("Operador formado");//508
+                System.out.println("Operador mal formado");//508
                 break;
             case 106:
                 System.out.println("Igualda");//106
@@ -424,7 +424,6 @@ public class AnalizadorLexico {
         
     public void UltimoCaracter(){
         int lim = Enunciado.length();
-        String Leida="";
         boolean Comentarios=false;
         int AnchoPalabra=0;
         int apuntador=0;
@@ -441,15 +440,18 @@ public class AnalizadorLexico {
                 palabra2.push(palabra.pop());
                 // Letras cortan operadores
                 if(!PilaOperadores.isEmpty()){
-                    if((PilaOperadores.peek()=='*'||PilaOperadores.peek()=='/')&&Comentarios==false){
-                        System.out.println("Salio "+PilaOperadores.pop());
+                    if(PilaOperadores.peek()=='='){
+                    Estados(508);
+                    PilaOperadores.pop();
+                    }else if((PilaOperadores.peek()=='*'||PilaOperadores.peek()=='/')&&Comentarios==false){
+                        PilaOperadores.pop();
                     }else if(PilaOperadores.peek()=='+'||PilaOperadores.peek()=='-'||PilaOperadores.peek()=='<'
                             ||PilaOperadores.peek()=='>'||PilaOperadores.peek()=='='||PilaOperadores.peek()==':'){
-                        System.out.println("Salio "+PilaOperadores.pop());
+                        PilaOperadores.pop();
                     }
                 }else if(!PilaDelimitadores.isEmpty()){
                     if(PilaDelimitadores.peek()=='_'||PilaDelimitadores.peek()=='.'||PilaDelimitadores.peek()==';'){
-                        System.out.println("Salio "+PilaDelimitadores.pop());
+                        PilaDelimitadores.pop();
                     }                    
                 }
 
@@ -476,6 +478,10 @@ public class AnalizadorLexico {
                 }
                 else if(apuntador==0 && Delimitador=='_'){
                     System.out.println("Error termina con guion bajo");
+                }else if(!PilaOperadores.isEmpty()){
+                    if(PilaOperadores.peek()=='='){
+                    Estados(508);}
+                    PilaOperadores.pop();
                 }
                 else {
                     switch (Delimitador) {
@@ -586,7 +592,7 @@ public class AnalizadorLexico {
             //operadores          
             else if(palabra.peek()>=60 && palabra.peek()<=62
                     ||palabra.peek()==42||palabra.peek()==43||palabra.peek()==45
-                    ||palabra.peek()==47){
+                    ||palabra.peek()==47||palabra.peek()==':'){
 //                AnchoPalabra=0;
 //                System.out.println("Es un operador");
                 
@@ -598,18 +604,22 @@ public class AnalizadorLexico {
                 }else{
                 switch (operador) {
                     case ':':
-                        //dos puntos
-                        Estados(125);
-                        PilaOperadores.push(operador);
+                        if(!PilaOperadores.isEmpty()){
+                            if(PilaOperadores.peek()=='='){
+                                //Asignacion
+                                Estados(126);
+                                PilaOperadores.push(operador);
+                            }else{
+                            }                            
+                        }else{
+                            //dos puntos
+                            Estados(125);
+                            PilaOperadores.push(operador);
+                        }                        
                         break;
                     case '=':
                         if(!PilaOperadores.isEmpty()){
                             switch (PilaOperadores.peek()) {
-                                case ':':
-                                    //Asignacion
-                                    Estados(126);
-                                    PilaOperadores.pop();
-                                    break;
                                 case '<':
                                     //Menor igual
                                     Estados(109);
@@ -631,10 +641,9 @@ public class AnalizadorLexico {
                                     break;
                             }
                         }else{
-                            //508
-                            Estados(508);
-                            PilaOperadores.push(operador);
-                        }   break;
+                            PilaOperadores.push(operador);                            
+                        }   
+                        break;
                     case '<':
                         //menor
                         Estados(107);
@@ -728,15 +737,18 @@ public class AnalizadorLexico {
                 }
                 // numeros cortan operadores
                 if(!PilaOperadores.isEmpty()){
-                    if((PilaOperadores.peek()=='*'||PilaOperadores.peek()=='/')&&Comentarios==false){
-                        System.out.println("Salio "+PilaOperadores.pop());
+                    if(PilaOperadores.peek()=='='){
+                        Estados(508);
+                        PilaOperadores.pop();
+                    }else if((PilaOperadores.peek()=='*'||PilaOperadores.peek()=='/')&&Comentarios==false){
+                        PilaOperadores.pop();
                     }else if(PilaOperadores.peek()=='+'||PilaOperadores.peek()=='-'||PilaOperadores.peek()=='<'
                             ||PilaOperadores.peek()=='>'||PilaOperadores.peek()=='='||PilaOperadores.peek()==':'){
-                        System.out.println("Salio "+PilaOperadores.pop());
+                        PilaOperadores.pop();
                     }
                 }else if(!PilaDelimitadores.isEmpty()){
                     if(PilaDelimitadores.peek()=='_'||PilaDelimitadores.peek()=='.'||PilaDelimitadores.peek()==';'){
-                        System.out.println("Salio "+PilaDelimitadores.pop());
+                        PilaDelimitadores.pop();
                     }                    
                 }
                 apuntador++;
@@ -752,6 +764,10 @@ public class AnalizadorLexico {
                 palabra.pop();
                 if(apuntador==lim-1){
                     System.out.println("Error no empieza con letra");
+                }else if(!PilaOperadores.isEmpty()){
+                    if(PilaOperadores.peek()=='='){
+                    Estados(508);
+                }
                 }
                 //avanzar en la pila
                    apuntador++;                           
@@ -763,6 +779,11 @@ public class AnalizadorLexico {
                 if(apuntador==lim-1){
                     ELERROR=-1;
                     System.out.println("Error no empieza con letra");
+                }else if(!PilaOperadores.isEmpty()){
+                    if(PilaOperadores.peek()=='='){
+                    Estados(508);
+                    PilaOperadores.pop();
+                }
                 }
 //                System.out.println("Error caracter no valido");
                 apuntador++;
@@ -774,10 +795,10 @@ public class AnalizadorLexico {
     }
 
     public static void main(String[] args) {      
-        AnalizadorLexico lex= new AnalizadorLexico();
+        Lexico lex= new Lexico();
         lex.RecibeCadena();
         lex.LlenarPilla();
         lex.UltimoCaracter();
 
-    }
+}
 }
