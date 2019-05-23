@@ -1,23 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package analizadorlexicosintactico;
 
+package analizadorlexicosintactico;
 import java.util.Scanner;
 import java.util.Stack;
 
-/**
- *
- * @author Francisco Favela
- */
 public class AnalizadorLexico {
-
-    String reservada[] = {"array", "begin", "case", "const", "do", "else", "writeln", "readln", "elseif", "end",
-        "for", "if", "loop", "module", "function", "exit", "not", "of", "mod", "record", "repeat", "return",
-        "pocedure", "by", "then", "to", "until", "var", "while", "with", "true", "false", "div", "integer", "real",
-        "char", "string", "byte", "boolean", "string"};
+    String reservada[] = {"array", "begin", "case", "const", "do", "else", "writeln","readln", "elseif", "end",
+                          "for", "if", "loop", "module","function", "exit", "not", "of","mod","record","repeat","return",
+                          "pocedure","by","then","to","until","var","while","with","true","false","div","integer","real",
+                          "char","string","byte","boolean","string"};
     public int [][] matrizL={
             //	l	L	d	_	.	'	/	"	{	}	=	<	>	+	-	(	)	[	]	,	;	:	/t	/n	/b      !=
 		{1	,1	,3	,506	,16	,6	,8	,15	,11	,506	,12	,11	,12	,113	,114	,118	,119	,120	,121	,122	,124	,125	,0	,0	,0	,505}	,
@@ -40,127 +30,28 @@ public class AnalizadorLexico {
                 {125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125}
 
         };//
-    Scanner parametro = new Scanner(System.in);
-    public static String Enunciado = "";
-    Stack<Character> palabra = new Stack<>();
+    Scanner parametro= new Scanner(System.in);
+    public static String Enunciado="";
+    Stack<Character> palabra = new Stack<>();    
     Stack<Character> palabra2 = new Stack<>();
+    
     public static int ELERROR = 1;
-
+    
     public void RecibeCadena() {
         System.out.println("escribe una palabra");
         Enunciado = parametro.nextLine();
         System.out.println("se recibio la orden: " + Enunciado);
     }
-
-    public void Estados(int a) {
-        switch (a) {
-            case 103:
-                System.out.println("Letrero");//103
-                break;
-            case 502:
-                System.out.println("Comentario");//502
-                break;
-            case 104:
-                System.out.println("Formato");//104
-                break;
-            case 116:
-                System.out.println("Division");//116
-                break;
-            case 105:
-                System.out.println("Comentarios");//105
-                break;
-            case 508:
-                System.out.println("Operador formado");//508
-                break;
-            case 106:
-                System.out.println("Igualda");//106
-                break;
-            case 107:
-                System.out.println("Menor");//107
-                break;
-            case 108:
-                System.out.println("Diferente");//108
-                break;
-            case 109:
-                System.out.println("Menor igual");//109
-                break;
-            case 110:
-                System.out.println("Mayor");//110
-                break;
-            case 111:
-                System.out.println("Mayor Igual");//111
-                break;
-            case 112:
-                System.out.println("Suma");//112
-                break;
-            case 113:
-                System.out.println("Resta");//113
-                break;
-            case 114:
-                System.out.println("Multiplicacion");//114
-                break;
-            case 115:
-                System.out.println("Por Por");//115
-                break;
-            case 117:
-                System.out.println("Parentesis que abre");//117
-                break;
-            case 118:
-                System.out.println("Parentesis que cierra");//118
-                break;
-            case 119:
-                System.out.println("Corchete que abre");//119
-                break;
-            case 120:
-                System.out.println("Corchete que cierra");//120
-                break;
-            case 121:
-                System.out.println("Coma");//121
-                break;
-            case 122:
-                System.out.println("Punto");//122
-                break;
-            case 123:
-                System.out.println("Punto y punto");//123
-                break;
-            case 124:
-                System.out.println("Punto y coma");//124
-                break;
-            case 125:
-                System.out.println("Dos puntos");//125
-                break;
-            case 126:
-                System.out.println("Asignacion");//126
-                break;
-            case 503:
-                System.out.println("Or");//503
-                break;
-            case 504:
-                System.out.println("And");//504
-                break;
-            case 505:
-                System.out.println("Not");//505
-                break;
-            case 506:
-                System.out.println("Error Logico");//506
-                break;
-            case 507:
-                System.out.println("Error Doble guion");//507
-                break;
-            default:
-                System.out.println("Caso Desconocido");
-                break;
+    
+    public void LlenarPilla(){
+        
+        for(int DD=0; DD<Enunciado.length();){
+            
+            palabra.push(Enunciado.charAt(DD));            
+            DD++;
         }
     }
-
-    public void LlenarPilla() {
-
-        for (int DD = 0; DD <= Enunciado.length(); DD++) {
-            palabra.push(Enunciado.charAt(DD));
-        }
-    }
-
-        public void UltimoCaracter(){
+    public void UltimoCaracter(){
         int lim = Enunciado.length();
         String Leida="";
         int Comentarios=0;
@@ -179,7 +70,7 @@ public class AnalizadorLexico {
                 palabra2.push(palabra.pop());
                 // Letras cortan operadores
                 if(!PilaOperadores.isEmpty()){
-                    System.out.println("Scar un caracter");
+                    
                     if((PilaOperadores.peek()=='*'||PilaOperadores.peek()=='/')&&Comentarios!=0){
                         PilaOperadores.pop();
                     }else if(PilaOperadores.peek()=='+'||PilaOperadores.peek()=='-'||PilaOperadores.peek()=='<'
@@ -517,5 +408,13 @@ public class AnalizadorLexico {
                 apuntador++;
             }            
         }
+    }
+
+    public static void main(String[] args) {      
+        AnalizadorLexico lex= new AnalizadorLexico();
+        lex.RecibeCadena();
+        lex.LlenarPilla();
+        lex.UltimoCaracter();
+
     }
 }
