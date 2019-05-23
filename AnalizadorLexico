@@ -348,11 +348,11 @@ public class AnalizadorLexico {
                                 //Abrir comentarios
                                 Comentarios+=1;
                             }else{
-                                //divicion
+                                //division
                                 PilaOperadores.push(operador);
                             }
                         }else{
-                            //divicion
+                            //division
                             PilaOperadores.push(operador);
                         }   break;
                     default:
@@ -370,7 +370,7 @@ public class AnalizadorLexico {
                 }
                 // numeros cortan operadores
                 if(!PilaOperadores.isEmpty()){
-                    System.out.println("Scar un caracter");
+                    
                     if((PilaOperadores.peek()=='*'||PilaOperadores.peek()=='/')&&Comentarios!=0){
                         PilaOperadores.pop();
                     }else if(PilaOperadores.peek()=='+'||PilaOperadores.peek()=='-'||PilaOperadores.peek()=='<'
