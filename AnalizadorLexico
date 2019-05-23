@@ -1,7 +1,8 @@
+package analizadorlexicosintactico;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class Lexico {
+public class AnalizadorLexico {
     String reservada[] = {"array", "begin", "case", "const", "do", "else", "writeln","readln", "elseif", "end",
                           "for", "if", "loop", "module","function", "exit", "not", "of","mod","record","repeat","return",
                           "pocedure","by","then","to","until","var","while","with","true","false","div","integer","real",
@@ -180,28 +181,28 @@ public class Lexico {
             switch (Leida) {
                 case "do":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
             //Si el error se cumple pasa a error
                 case "of":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "by":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "to":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "if":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "or":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     SimboloEsctrito=1;
                     break;
                 default:
@@ -218,32 +219,32 @@ public class Lexico {
             switch (Leida) {
                 case "end":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "for":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "not":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     SimboloEsctrito=3;
                     break;
                 case "mod":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "var":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "div":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "and":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     SimboloEsctrito=2;
                     break;
                 default:
@@ -259,43 +260,43 @@ public class Lexico {
             switch (Leida) {
                 case "case":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "else":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "loop":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "exit":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "then":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "with":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "true":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "real":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "char":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "byte":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 default:
                     break;
@@ -310,27 +311,27 @@ public class Lexico {
             switch (Leida) {
                 case "array":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "begin":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "const":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "until":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "while":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "flase":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 default:
                     break;
@@ -345,31 +346,31 @@ public class Lexico {
             switch (Leida) {
                 case "readln":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "elseif":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "module":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "record":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "repeat":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "return":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "string":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 default:
                     break;
@@ -384,15 +385,15 @@ public class Lexico {
             switch (Leida) {
                 case "writeln":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "integer":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 case "boolean":
                     ELERROR=-1;
-                    System.out.println("Error palabra reservada");
+                    System.out.println("palabra reservada");
                     break;
                 default:
                     break;
@@ -406,11 +407,11 @@ public class Lexico {
                         //Comparar si se parecen con un IF
                         if("function".equals(Leida)){
                         ELERROR=-1;
-                        System.out.println("Error palabra reservada");
+                        System.out.println("palabra reservada");
                         }
                         else if("procedure".equals(Leida)){
                         ELERROR=-1;
-                        System.out.println("Error palabra reservada");
+                        System.out.println("palabra reservada");
                         }
 
                         //Vaciar la palabra leida despues de usarla
@@ -773,7 +774,7 @@ public class Lexico {
     }
 
     public static void main(String[] args) {      
-        Lexico lex= new Lexico();
+        AnalizadorLexico lex= new AnalizadorLexico();
         lex.RecibeCadena();
         lex.LlenarPilla();
         lex.UltimoCaracter();
