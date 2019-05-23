@@ -1,13 +1,23 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package analizadorlexicosintactico;
+
 import java.util.Scanner;
 import java.util.Stack;
 
+/**
+ *
+ * @author Tu kokoro encantado
+ */
 public class AnalizadorLexico {
-    String reservada[] = {"array", "begin", "case", "const", "do", "else", "writeln","readln", "elseif", "end",
-                          "for", "if", "loop", "module","function", "exit", "not", "of","mod","record","repeat","return",
-                          "pocedure","by","then","to","until","var","while","with","true","false","div","integer","real",
-                          "char","string","byte","boolean","string"};
+
+    String reservada[] = {"array", "begin", "case", "const", "do", "else", "writeln", "readln", "elseif", "end",
+        "for", "if", "loop", "module", "function", "exit", "not", "of", "mod", "record", "repeat", "return",
+        "pocedure", "by", "then", "to", "until", "var", "while", "with", "true", "false", "div", "integer", "real",
+        "char", "string", "byte", "boolean", "string"};
     public int [][] matrizL={
             //	l	L	d	_	.	'	/	"	{	}	=	<	>	+	-	(	)	[	]	,	;	:	/t	/n	/b      !=
 		{1	,1	,3	,506	,16	,6	,8	,15	,11	,506	,12	,11	,12	,113	,114	,118	,119	,120	,121	,122	,124	,125	,0	,0	,0	,505}	,
@@ -30,28 +40,142 @@ public class AnalizadorLexico {
                 {125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125	,125}
 
         };//
-    Scanner parametro= new Scanner(System.in);
-    public static String Enunciado="";
-    Stack<Character> palabra = new Stack<>();    
+    Scanner parametro = new Scanner(System.in);
+    public static String Enunciado = "";
+    Stack<Character> palabra = new Stack<>();
     Stack<Character> palabra2 = new Stack<>();
-    
     public static int ELERROR = 1;
-    
+
     public void RecibeCadena() {
         System.out.println("escribe una palabra");
         Enunciado = parametro.nextLine();
         System.out.println("se recibio la orden: " + Enunciado);
     }
-    
-    public void LlenarPilla(){
-        
-        for(int DD=0; DD<Enunciado.length();){
-            
-            palabra.push(Enunciado.charAt(DD));            
-            DD++;
+
+    public void Estados(int a) {
+        switch (a) {
+            case 501:
+                System.out.println("Identificador mal formado");//103
+                break;
+            case 100:
+                System.out.println("Identificador/palabra reservada/Operador relacional");//100
+                break;
+            case 500:
+                System.out.println("Real mal formado");//500
+                break;
+            case 101:
+                System.out.println("Numeros Enteros");//101
+                break;
+            case 102:
+                System.out.println("Numeros Reales");//102
+                break;
+            case 103:
+                System.out.println("Letrero");//103
+                break;
+            case 502:
+                System.out.println("Comentario mal dormado");//502
+                break;
+            case 104:
+                System.out.println("Formato");//104
+                break;
+            case 116:
+                System.out.println("Division");//116
+                break;
+            case 105:
+                System.out.println("Comentarios");//105
+                break;
+            case 508:
+                System.out.println("Operador formado");//508
+                break;
+            case 106:
+                System.out.println("Igualda");//106
+                break;
+            case 107:
+                System.out.println("Menor");//107
+                break;
+            case 108:
+                System.out.println("Diferente");//108
+                break;
+            case 109:
+                System.out.println("Menor igual");//109
+                break;
+            case 110:
+                System.out.println("Mayor");//110
+                break;
+            case 111:
+                System.out.println("Mayor Igual");//111
+                break;
+            case 112:
+                System.out.println("Suma");//112
+                break;
+            case 113:
+                System.out.println("Resta");//113
+                break;
+            case 114:
+                System.out.println("Multiplicacion");//114
+                break;
+            case 115:
+                System.out.println("Por Por");//115
+                break;
+            case 117:
+                System.out.println("Parentesis que abre");//117
+                break;
+            case 118:
+                System.out.println("Parentesis que cierra");//118
+                break;
+            case 119:
+                System.out.println("Corchete que abre");//119
+                break;
+            case 120:
+                System.out.println("Corchete que cierra");//120
+                break;
+            case 121:
+                System.out.println("Coma");//121
+                break;
+            case 122:
+                System.out.println("Punto");//122
+                break;
+            case 123:
+                System.out.println("Punto y punto");//123
+                break;
+            case 124:
+                System.out.println("Punto y coma");//124
+                break;
+            case 125:
+                System.out.println("Dos puntos");//125
+                break;
+            case 126:
+                System.out.println("Asignacion");//126
+                break;
+            case 503:
+                System.out.println("Or");//503
+                break;
+            case 504:
+                System.out.println("And");//504
+                break;
+            case 505:
+                System.out.println("Not");//505
+                break;
+            case 506:
+                System.out.println("Error Logico");//506
+                break;
+            case 507:
+                System.out.println("Error Doble guion");//507
+                break;
+            default:
+                System.out.println("Caso Desconocido");
+                break;
         }
     }
-    public void UltimoCaracter(){
+
+    public void LlenarPilla() {
+
+        for (int DD = 0; DD <= Enunciado.length(); DD++) {
+            palabra.push(Enunciado.charAt(DD));
+        }
+    }
+
+        public void UltimoCaracter(){
         int lim = Enunciado.length();
         String Leida="";
         int Comentarios=0;
@@ -70,7 +194,7 @@ public class AnalizadorLexico {
                 palabra2.push(palabra.pop());
                 // Letras cortan operadores
                 if(!PilaOperadores.isEmpty()){
-                    
+                    System.out.println("Scar un caracter");
                     if((PilaOperadores.peek()=='*'||PilaOperadores.peek()=='/')&&Comentarios!=0){
                         PilaOperadores.pop();
                     }else if(PilaOperadores.peek()=='+'||PilaOperadores.peek()=='-'||PilaOperadores.peek()=='<'
@@ -92,7 +216,30 @@ public class AnalizadorLexico {
                     case 2:
                         //Do        Of      By      To      If or
                         //Comparar si se parecen con un IF
-                        //if
+                        if(Leida=="do"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="of"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="by"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="to"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="if"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="or"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
                         //Si el error se cumple pasa a error
 
                         //Vaciar la palabra leida despues de usarla
@@ -109,7 +256,46 @@ public class AnalizadorLexico {
                     case 4:
                         //Case      Else    Loop    Exit    Then    With    True    Real    Char    Byte
                         //Comparar si se parecen con un IF
-                        //if
+                        if(Leida=="case"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="else"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="loop"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="exit"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="then"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="with"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="true"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="real"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="char"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="byte"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
 
                         //Vaciar la palabra leida despues de usarla
                         Leida="";
@@ -117,7 +303,30 @@ public class AnalizadorLexico {
                     case 5:
                         //Array     Begin   Const   Until   While   False
                         //Comparar si se parecen con un IF
-                        //if
+                        if(Leida=="array"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="begin"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="const"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="until"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="while"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="flase"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
 
                         //Vaciar la palabra leida despues de usarla
                         Leida="";
@@ -125,7 +334,34 @@ public class AnalizadorLexico {
                     case 6:
                         //Readln    ElseIf  Module  Record  Repeat  Return  String
                         //Comparar si se parecen con un IF
-                        //if
+                        if(Leida=="readln"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="elseif"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="module"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="record"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="repeat"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="return"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="string"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
 
                         //Vaciar la palabra leida despues de usarla
                         Leida="";
@@ -133,7 +369,18 @@ public class AnalizadorLexico {
                     case 7:
                         //Writeln   Integer	Boolean
                         //Comparar si se parecen con un IF
-                        //if
+                        if(Leida=="writeln"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="integer"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="boolean"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
 
                         //Vaciar la palabra leida despues de usarla
                         Leida="";
@@ -141,7 +388,14 @@ public class AnalizadorLexico {
                     case 8:
                         //Function	Procedure
                         //Comparar si se parecen con un IF
-                        //if
+                        if(Leida=="function"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
+                        else if(Leida=="procedure"){
+                        ELERROR=-1;
+                        System.out.println("Error palabra reservada");
+                        }
 
                         //Vaciar la palabra leida despues de usarla
                         Leida="";
@@ -172,27 +426,28 @@ public class AnalizadorLexico {
                 
                 switch (Delimitador) {
                     case ')':
-                        //Parentesis derecho
+                        //e.estados(118);
                         PilaDelimitadores.push('(');                        
                         break;
                     case ']':
-                        //Corchete derecho
+                        //e.estados(120);
                         PilaDelimitadores.push('[');                        
                         break;
                     case '}':
-                        //Llave derecha
+                        //No es de la llave en si es de comentarios
+                        //e.estados(105);
                         PilaDelimitadores.push('{');                        
                         break;
                     case '(':
-                        //Parentesis izquierdo
+                        //e.estados(117);
                         PilaDelimitadores.push('(');
                         break;
                     case '[':
-                        //Corchete izquierdo
+                        //e.estados(119);
                         PilaDelimitadores.push('[');
                         break;
                     case '{':
-                        //Llave izquierda
+                        //No es delimitador la llave edwin
                         PilaDelimitadores.push('{');
                         break;
                     case '"':
@@ -211,22 +466,22 @@ public class AnalizadorLexico {
                     case '.':
                         if (!PilaDelimitadores.isEmpty()){
                             if(PilaDelimitadores.peek()=='.'){
-                                //Doble punto
+                                //e.estados(123);
                             }
                             else{
-                                //punto
+                                //e.estados(122);
                                 PilaDelimitadores.push('.');
                             }
                         }else{
-                            //punto
+                            //e.estados(122);
                             PilaDelimitadores.push('.');
                         }   break;
                         case ',':
-                            //Coma
+                            //e.estados(121);
                             PilaDelimitadores.push(',');
                         break;
                         case ';':
-                            //Punto y coma
+                            //e.estados(124);
                             PilaDelimitadores.push(';');
                         break;
                     case '_':
@@ -265,65 +520,65 @@ public class AnalizadorLexico {
                 apuntador++;               
                 switch (operador) {
                     case ':':
-                        //dos puntos
+                        //e.estados(125);
                         PilaOperadores.push(operador);
                         break;
                     case '=':
                         if(!PilaOperadores.isEmpty()){
                             if(null==PilaOperadores.peek()){
-                                //508
+                                //e.estados(508);
                                 PilaOperadores.push(operador);
                             }
                             else switch (PilaOperadores.peek()) {
                                 case ':':
-                                    //Asignacion
+                                    //e.estados(126);
                                     break;
                                 case '<':
-                                    //Menor igual
+                                    //e.estados(109);
                                     break;
                                 case '>':
-                                    //Mayor igual
+                                    //e.estados(111);
                                     break;
                                 case '=':
-                                    //Igualdad
+                                    //e.estados(106);
                                     break;
                                 default:
-                                    //508
+                                    //e.estados(508);
                                     PilaOperadores.push(operador);
                                     break;
                             }
                         }else{
-                            //508
+                            //e.estados(508);
                             PilaOperadores.push(operador);
                         }   break;
                     case '<':
-                        //menor
+                        //e.estados(107);
                         PilaOperadores.push(operador);
                         break;
                     case '>':
                         if(!PilaOperadores.isEmpty()){
                             if(PilaOperadores.peek()=='<'){
-                                //diferente
+                                //e.estados(108);
                             }else{
-                                //mayor
+                                //e.estados(110);
                                 PilaOperadores.push(operador);
                             }
                         }else{
-                            //mayor
+                            //e.estados(110);
                             PilaOperadores.push(operador);
                         }   break;
                     case '+':
                         PilaOperadores.push(operador);
-                        //mas
+                        //e.estados(112);
                         break;
                     case '-':
                         PilaOperadores.push(operador);
-                        //menos
+                        //e.estados(113);
                         break;
                     case '*':
                         if(!PilaOperadores.isEmpty()){
                             if(null==PilaOperadores.peek()){
-                                //multiplicacion
+                                //e.estados(114);
                                 PilaOperadores.push(operador);
                             }else switch (PilaOperadores.peek()) {
                                 case '/':
@@ -331,15 +586,15 @@ public class AnalizadorLexico {
                                     Comentarios+=-1;
                                     break;
                                 case '*':
-                                    //Por Por
+                                    //e.estados(115);
                                     break;
                                 default:
-                                    //multiplicacion
+                                    //e.estados(114);
                                     PilaOperadores.push(operador);
                                     break;
                             }
                         }else{
-                            //multiplicacion
+                            //e.estados(114);
                             PilaOperadores.push(operador);
                         }   break;
                     case '/':
@@ -348,11 +603,11 @@ public class AnalizadorLexico {
                                 //Abrir comentarios
                                 Comentarios+=1;
                             }else{
-                                //division
+                                //e.estados(116);
                                 PilaOperadores.push(operador);
                             }
                         }else{
-                            //division
+                            //e.estados(116);
                             PilaOperadores.push(operador);
                         }   break;
                     default:
@@ -370,7 +625,7 @@ public class AnalizadorLexico {
                 }
                 // numeros cortan operadores
                 if(!PilaOperadores.isEmpty()){
-                    
+                    System.out.println("Sacar un caracter");
                     if((PilaOperadores.peek()=='*'||PilaOperadores.peek()=='/')&&Comentarios!=0){
                         PilaOperadores.pop();
                     }else if(PilaOperadores.peek()=='+'||PilaOperadores.peek()=='-'||PilaOperadores.peek()=='<'
@@ -408,13 +663,5 @@ public class AnalizadorLexico {
                 apuntador++;
             }            
         }
-    }
-
-    public static void main(String[] args) {      
-        AnalizadorLexico lex= new AnalizadorLexico();
-        lex.RecibeCadena();
-        lex.LlenarPilla();
-        lex.UltimoCaracter();
-
     }
 }
