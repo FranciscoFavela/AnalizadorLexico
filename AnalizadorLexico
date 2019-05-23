@@ -181,28 +181,28 @@ public class AnalizadorLexico {
             switch (Leida) {
                 case "do":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : do");
                     break;
             //Si el error se cumple pasa a error
                 case "of":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : of");
                     break;
                 case "by":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : by");
                     break;
                 case "to":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : to");
                     break;
                 case "if":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : if");
                     break;
                 case "or":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : or");
                     SimboloEsctrito=1;
                     break;
                 default:
@@ -219,32 +219,32 @@ public class AnalizadorLexico {
             switch (Leida) {
                 case "end":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : end");
                     break;
                 case "for":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : for");
                     break;
                 case "not":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : not");
                     SimboloEsctrito=3;
                     break;
                 case "mod":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : mod");
                     break;
                 case "var":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : var");
                     break;
                 case "div":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : div");
                     break;
                 case "and":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : and");
                     SimboloEsctrito=2;
                     break;
                 default:
@@ -260,43 +260,43 @@ public class AnalizadorLexico {
             switch (Leida) {
                 case "case":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : case");
                     break;
                 case "else":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : else");
                     break;
                 case "loop":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : loop");
                     break;
                 case "exit":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : exit");
                     break;
                 case "then":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : then");
                     break;
                 case "with":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : with");
                     break;
                 case "true":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : true");
                     break;
                 case "real":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : real");
                     break;
                 case "char":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : char");
                     break;
                 case "byte":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : byte");
                     break;
                 default:
                     break;
@@ -311,27 +311,27 @@ public class AnalizadorLexico {
             switch (Leida) {
                 case "array":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : array");
                     break;
                 case "begin":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : begin");
                     break;
                 case "const":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : const");
                     break;
                 case "until":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : until");
                     break;
                 case "while":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : while");
                     break;
-                case "flase":
+                case "false":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : false");
                     break;
                 default:
                     break;
@@ -346,31 +346,31 @@ public class AnalizadorLexico {
             switch (Leida) {
                 case "readln":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada :readln");
                     break;
                 case "elseif":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : elseif");
                     break;
                 case "module":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : module");
                     break;
                 case "record":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : record");
                     break;
                 case "repeat":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada :repeat");
                     break;
                 case "return":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada :return");
                     break;
                 case "string":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : string");
                     break;
                 default:
                     break;
@@ -385,15 +385,15 @@ public class AnalizadorLexico {
             switch (Leida) {
                 case "writeln":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada :writeln");
                     break;
                 case "integer":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : integer");
                     break;
                 case "boolean":
                     ELERROR=-1;
-                    System.out.println("palabra reservada");
+                    System.out.println("palabra reservada : boolean");
                     break;
                 default:
                     break;
@@ -407,11 +407,11 @@ public class AnalizadorLexico {
                         //Comparar si se parecen con un IF
                         if("function".equals(Leida)){
                         ELERROR=-1;
-                        System.out.println("palabra reservada");
+                        System.out.println("palabra reservada : function");
                         }
                         else if("procedure".equals(Leida)){
                         ELERROR=-1;
-                        System.out.println("palabra reservada");
+                        System.out.println("palabra reservada : procedure");
                         }
 
                         //Vaciar la palabra leida despues de usarla
