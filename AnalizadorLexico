@@ -1,18 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package analizadorlexicosintactico;
-
 import java.util.Scanner;
 import java.util.Stack;
 
-/**
- *
- * @author Tu kokoro encantado
- */
-public class AnalizadorLexico {
+public class Lexico {
     String reservada[] = {"array", "begin", "case", "const", "do", "else", "writeln","readln", "elseif", "end",
                           "for", "if", "loop", "module","function", "exit", "not", "of","mod","record","repeat","return",
                           "pocedure","by","then","to","until","var","while","with","true","false","div","integer","real",
@@ -435,7 +424,7 @@ public class AnalizadorLexico {
     public void UltimoCaracter(){
         int lim = Enunciado.length();
         String Leida="";
-        int Comentarios=0;
+        boolean Comentarios=false;
         int AnchoPalabra=0;
         int apuntador=0;
         Stack<Character> PilaDelimitadores = new Stack<>();
@@ -451,15 +440,15 @@ public class AnalizadorLexico {
                 palabra2.push(palabra.pop());
                 // Letras cortan operadores
                 if(!PilaOperadores.isEmpty()){
-                    if((PilaOperadores.peek()=='*'||PilaOperadores.peek()=='/')&&Comentarios!=0){
-                        PilaOperadores.pop();
+                    if((PilaOperadores.peek()=='*'||PilaOperadores.peek()=='/')&&Comentarios==false){
+                        System.out.println("Salio "+PilaOperadores.pop());
                     }else if(PilaOperadores.peek()=='+'||PilaOperadores.peek()=='-'||PilaOperadores.peek()=='<'
                             ||PilaOperadores.peek()=='>'||PilaOperadores.peek()=='='||PilaOperadores.peek()==':'){
-                        PilaOperadores.pop();
+                        System.out.println("Salio "+PilaOperadores.pop());
                     }
                 }else if(!PilaDelimitadores.isEmpty()){
                     if(PilaDelimitadores.peek()=='_'||PilaDelimitadores.peek()=='.'||PilaDelimitadores.peek()==';'){
-                        PilaDelimitadores.pop();
+                        System.out.println("Salio "+PilaDelimitadores.pop());
                     }                    
                 }
 
@@ -474,7 +463,7 @@ public class AnalizadorLexico {
             //delimitadores 
             else if(palabra.peek()==40 || palabra.peek()==41 || palabra.peek()==44
                     || palabra.peek()==46 || palabra.peek()>=91 && palabra.peek()<=96
-                    ||palabra.peek()>=123 && palabra.peek()<=126){
+                    ||palabra.peek()>=123 && palabra.peek()<=126||palabra.peek()==';'||palabra.peek()=='"'){
                 
 //                AnchoPalabra=0;
                  char Delimitador=palabra.pop();
@@ -487,10 +476,8 @@ public class AnalizadorLexico {
                 else if(apuntador==0 && Delimitador=='_'){
                     System.out.println("Error termina con guion bajo");
                 }
-
-                apuntador++;
-                
-                switch (Delimitador) {
+                else {
+                    switch (Delimitador) {
                     case ')':
                         //Parentesis derecho
                         Estados(118);
@@ -503,7 +490,6 @@ public class AnalizadorLexico {
                         break;
                     case '}':
                         //Llave derecha
-                        Estados(105);
                         PilaDelimitadores.push('}');                        
                         break;
                     case '(':
@@ -523,6 +509,7 @@ public class AnalizadorLexico {
                                 PilaDelimitadores.removeElement('}');
                                 System.out.println("Comentarios");
                             }else{
+                                //comentario mal formulado
                                 PilaDelimitadores.push('{'); 
                             }
                             
@@ -533,6 +520,7 @@ public class AnalizadorLexico {
                             if(PilaDelimitadores.peek()=='"'){
                                 //cerrar comillas
                                 Estados(103);
+                                PilaDelimitadores.pop();
                             }
                             else{
                                 //abrir comillas
@@ -546,6 +534,7 @@ public class AnalizadorLexico {
                         if (!PilaDelimitadores.isEmpty()){
                             if(PilaDelimitadores.peek()=='.'){
                                 //Doble punto
+                                PilaDelimitadores.pop();
                                 Estados(123);
                             }
                             else{
@@ -563,7 +552,7 @@ public class AnalizadorLexico {
                             Estados(121);
                             PilaDelimitadores.push(',');
                         break;
-                        case ';':
+                    case ';':
                             //Punto y coma
                             Estados(124);
                             PilaDelimitadores.push(';');
@@ -573,6 +562,7 @@ public class AnalizadorLexico {
                             if(PilaDelimitadores.peek()=='_'){
                                 //No se permite doble guion
                                 System.out.println("Error doble guion");
+                                PilaDelimitadores.pop();
                             }
                             else{
                                 //guion bajo
@@ -584,8 +574,12 @@ public class AnalizadorLexico {
                             PilaDelimitadores.push('_');
                         }   break;
                     default:
+                        System.out.println("simbolo no encontrado");
                         break;
-                }                
+                }
+                }
+                apuntador++;               
+                                
             }
             
             //operadores          
@@ -600,8 +594,7 @@ public class AnalizadorLexico {
                 if(apuntador==lim-1){
                     ELERROR=-1;
                     System.out.println("Error no empieza con letra");
-                }               
-                apuntador++;               
+                }else{
                 switch (operador) {
                     case ':':
                         //dos puntos
@@ -610,27 +603,26 @@ public class AnalizadorLexico {
                         break;
                     case '=':
                         if(!PilaOperadores.isEmpty()){
-                            if(null==PilaOperadores.peek()){
-                                //508
-                                Estados(508);
-                                PilaOperadores.push(operador);
-                            }
-                            else switch (PilaOperadores.peek()) {
+                            switch (PilaOperadores.peek()) {
                                 case ':':
                                     //Asignacion
                                     Estados(126);
+                                    PilaOperadores.pop();
                                     break;
                                 case '<':
                                     //Menor igual
                                     Estados(109);
+                                    PilaOperadores.pop();
                                     break;
                                 case '>':
                                     //Mayor igual
                                     Estados(111);
+                                    PilaOperadores.pop();
                                     break;
                                 case '=':
                                     //Igualdad
                                     Estados(106);
+                                    PilaOperadores.pop();
                                     break;
                                 default:
                                     Estados(508);
@@ -674,18 +666,18 @@ public class AnalizadorLexico {
                         break;
                     case '*':
                         if(!PilaOperadores.isEmpty()){
-                            if(null==PilaOperadores.peek()){
-                                //multiplicacion
-                                Estados(114);
-                                PilaOperadores.push(operador);
-                            }else switch (PilaOperadores.peek()) {
+                            switch (PilaOperadores.peek()) {
                                 case '/':
                                     //Cerrar comentarios
-                                    Comentarios+=-1;
+                                    if(Comentarios==false){
+                                        Comentarios=true;
+                                        PilaOperadores.pop();
+                                    }
                                     break;
                                 case '*':
                                     //Por Por
                                     Estados(115);
+                                    PilaOperadores.pop();
                                     break;
                                 default:
                                     //multiplicacion
@@ -702,9 +694,9 @@ public class AnalizadorLexico {
                         if(!PilaOperadores.isEmpty()){
                             if(PilaOperadores.peek()=='*'){
                                 //Abrir comentarios
-                                Comentarios+=1;
-                                if(Comentarios==0){
-                                    System.out.println("Comentario");
+                                if(Comentarios==false){
+                                    Comentarios=true;
+                                    PilaOperadores.pop();
                                 }else{
                                 }
                             }else{
@@ -718,8 +710,11 @@ public class AnalizadorLexico {
                             PilaOperadores.push(operador);
                         }   break;
                     default:
+                        System.out.println("Operador no encontrado");
                         break;
                 }
+                }                              
+                apuntador++;
             }
             
             //numeros 
@@ -732,15 +727,15 @@ public class AnalizadorLexico {
                 }
                 // numeros cortan operadores
                 if(!PilaOperadores.isEmpty()){
-                    if((PilaOperadores.peek()=='*'||PilaOperadores.peek()=='/')&&Comentarios!=0){
-                        PilaOperadores.pop();
+                    if((PilaOperadores.peek()=='*'||PilaOperadores.peek()=='/')&&Comentarios==false){
+                        System.out.println("Salio "+PilaOperadores.pop());
                     }else if(PilaOperadores.peek()=='+'||PilaOperadores.peek()=='-'||PilaOperadores.peek()=='<'
                             ||PilaOperadores.peek()=='>'||PilaOperadores.peek()=='='||PilaOperadores.peek()==':'){
-                        PilaOperadores.pop();
+                        System.out.println("Salio "+PilaOperadores.pop());
                     }
                 }else if(!PilaDelimitadores.isEmpty()){
                     if(PilaDelimitadores.peek()=='_'||PilaDelimitadores.peek()=='.'||PilaDelimitadores.peek()==';'){
-                        PilaDelimitadores.pop();
+                        System.out.println("Salio "+PilaDelimitadores.pop());
                     }                    
                 }
                 apuntador++;
@@ -772,7 +767,7 @@ public class AnalizadorLexico {
                 apuntador++;
             }            
         }
-        if(Comentarios!=0){
+        if(Comentarios==true){
             System.out.println("Comentario mal formulado");
         }
     }
